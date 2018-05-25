@@ -10,7 +10,9 @@ copy [Iczelion's Win32 Assembly Homepage]
 
 教程17：動態鏈接庫 (原文 http://win32assembly.programminghorizon.com/tut17.html)
 在本教程中，我們將學習DLL，它們是什麼以及如何創建它們。
-你可以在這裡下載這個例子。
+你可以在這裡下載這個例子, 
+![原作者的源碼(編譯有小問題)](http://win32assembly.programminghorizon.com/files/tut17.zip), 
+![改過的編譯文件和源碼, 單獨啟動補build.bat即可](https://github.com/xiaolaba/Win32_DLL_Tutorial_17_Dynamic_Link_Libraries/releases)
 
 理論：
 如果你編程經驗足夠長，你會發現你寫的程序通常有一些代碼例程。 每當你開始編寫新程序時，重寫它們是浪費時間。 早在DOS時代，程序員就將這些常用的例程存儲在一個或多個庫中。 當他們想使用函數時，他們只需將庫鏈接到目標文件，鏈接器從庫中提取函數並將它們插入到最終的可執行文件中。 這個過程稱為靜態鏈接。 C運行時庫就是很好的例子。 這種方法的缺點是每個調用它們的程序都有相同的功能。 您的磁盤空間被浪費了，存儲了幾個相同的功能副本。 但是對於DOS程序運行，這種方法是完全可以接受的，因為通常只有一個程序在內存中處於活動狀態。 所以不會浪費寶貴的記憶體空間。
