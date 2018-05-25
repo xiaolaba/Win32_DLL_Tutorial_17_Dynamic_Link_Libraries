@@ -8,7 +8,8 @@ copy [Iczelion's Win32 Assembly Homepage]
 翻譯然後讀書筆記  
 
 
-教程17：動態鏈接庫 (原文 http://win32assembly.programminghorizon.com/tut17.html)
+教程17：  
+動態鏈接庫 (原文 http://win32assembly.programminghorizon.com/tut17.html)
 在本教程中，我們將學習DLL，它們是什麼以及如何創建它們。
 你可以在這裡下載這個例子,   
 * [原作者的源碼 tut17.zip, 編譯有小問題](http://win32assembly.programminghorizon.com/files/tut17.zip)   
