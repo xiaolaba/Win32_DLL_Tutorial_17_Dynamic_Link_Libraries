@@ -1,3 +1,6 @@
+Basic writing and formatting syntax https://help.github.com/articles/basic-writing-and-formatting-syntax/
+
+
 # Win32_DLL_Tutorial_17_Dynamic_Link_Libraries
 Win32 DLL, Tutorial 17: Dynamic Link Libraries, 
 copy [Iczelion's Win32 Assembly Homepage]
@@ -31,7 +34,7 @@ copy [Iczelion's Win32 Assembly Homepage]
 
 
 [code]
-
+```
 ; assembler : MASM32 SDK Version 11
 ; date : 2018-MAY-25
 ; download : http://www.masm32.com/download.htm
@@ -65,7 +68,7 @@ TestFunction proc
 TestFunction endp
 
 End DllEntry
-
+```
 [/code]
 
 .
@@ -74,7 +77,7 @@ End DllEntry
 
 
 [code]
-
+```
 ; assembler : MASM32 SDK Version 11
 ; date : 2018-MAY-25
 ; download : http://www.masm32.com/download.htm
@@ -84,7 +87,7 @@ End DllEntry
 ;-------------------------------------------------------------------------------------
 LIBRARY DLLSkeleton
 EXPORTS TestFunction
-
+```
 [/code]
 
 
