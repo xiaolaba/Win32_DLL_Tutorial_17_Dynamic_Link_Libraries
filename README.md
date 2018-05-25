@@ -100,20 +100,20 @@ EXPORTS TestFunction
 
 
 [code]
-
+```
 DllEntry proc hInstDLL:HINSTANCE, reason:DWORD, reserved1:DWORD
     mov eax,TRUE
     ret
 DllEntry Endp
-
+```
 [/code]
 
 分析參考以上源碼, 命名 <入口點函數名稱> 任意, 只要 proc / endp 兩行看到同樣的名稱.
-
+```
 DllEntry proc
 
 DllEntry Endp
-
+```
 這個函數有三個參數，只有前兩個參數很重要。
 1) hInstDLL是DLL的模塊句柄。 它與流程的實例句柄不一樣。 如果您以後需要使用它，您應該保留此值。 你不能輕易獲得它。
 2) reason 用以下四個可選值之一：
@@ -129,10 +129,10 @@ DllEntry Endp
 一個DLL在其開發階段需要一個模塊定義文件。 我們現在來看看它。
 
 [code]
-
+```
 LIBRARY DLLSkeleton
 EXPORTS TestFunction
-
+```
 [/code]
 
 必須有第一行 LIBRARY 語句定義了 DLL的內部模塊名稱。 您應該將它與DLL的文件名相匹配。
@@ -140,9 +140,9 @@ EXPORTS語句告訴鏈接器DLL中的哪些函數被導出，也就是說可以�
 另一個需要注意是 Link 的選項。 必須有 /DLL / DEF：<您的def文件名> ，如下所示：
 
 [code]
-
+```
 link /DLL /SUBSYSTEM:WINDOWS /DEF:DLLSkeleton.def /LIBPATH:c:\masm32\lib DLLSkeleton.obj
-
+```
 [/code]
 
 assembler (ml.exe) 的選項則相同，即/ c / coff / Cp。 因此，在鏈接目標文件後，您將獲得 .dll 和. lib。 .lib是導入庫，您可以使用它導入使用DLL中功能的其他程序。
