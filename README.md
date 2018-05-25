@@ -5,7 +5,7 @@ Basic writing and formatting syntax https://help.github.com/articles/basic-writi
 Win32 DLL, Tutorial 17: Dynamic Link Libraries, 
 copy [Iczelion's Win32 Assembly Homepage]
 
-翻譯然後讀書筆記
+翻譯然後讀書筆記  
 
 
 教程17：動態鏈接庫 (原文 http://win32assembly.programminghorizon.com/tut17.html)
@@ -14,14 +14,14 @@ copy [Iczelion's Win32 Assembly Homepage]
 * [原作者的源碼 tut17.zip, 編譯有小問題](http://win32assembly.programminghorizon.com/files/tut17.zip)   
 * [改過的編譯文件和源碼 tut17_xiaolaba, 單獨啟動補build.bat即可](https://github.com/xiaolaba/Win32_DLL_Tutorial_17_Dynamic_Link_Libraries/releases)
 
-理論：
+理論：  
 如果你編程經驗足夠長，你會發現你寫的程序通常有一些代碼例程。 每當你開始編寫新程序時，重寫它們是浪費時間。 早在DOS時代，程序員就將這些常用的例程存儲在一個或多個庫中。 當他們想使用函數時，他們只需將庫鏈接到目標文件，鏈接器從庫中提取函數並將它們插入到最終的可執行文件中。 這個過程稱為靜態鏈接。 C運行時庫就是很好的例子。 這種方法的缺點是每個調用它們的程序都有相同的功能。 您的磁盤空間被浪費了，存儲了幾個相同的功能副本。 但是對於DOS程序運行，這種方法是完全可以接受的，因為通常只有一個程序在內存中處於活動狀態。 所以不會浪費寶貴的記憶體空間。
 
 在Windows下，情況變得很不一樣，因為您可以同時運行多個程序。 如果程序非常大，內存會很快被吃光。 Windows有這種類型的問題的解決方案：動態鏈接庫 Dynamic Link Libraries (DLL)。 動態鏈接庫是一種常見的函數庫。 Windows不會將多個DLL副本加載到內存中，因此即使程序中有許多實例同時運行，也只會加載一個DLL副本在內存中供應用程序使用。 我應該澄清一點, 實際上, 所有使用相同dll的進程都會擁有自己的該dll副本, 同一個DLL會看起來像在內存中有許多副本。 但是實際上，Windows在分頁機制方面有著神奇的效果，所有進程都共享記憶體裡面相同的DLL代碼。因此，在物理內存中，只有一個DLL代碼副本。 但是，每個進程都將擁有其自己的唯一數據部分的DLL。該程序在運行時鏈接到一個DLL，與舊的靜態庫不同。 這就是為什麼它被稱為動態鏈接庫。 當你不需要它的時候，你也可以在運行時卸載一個DLL。 如果該程序是唯一使用DLL的程序，它將立即從內存中卸載。 但是，如果該DLL仍被其他程序使用，則該DLL將保留在內存中，直到使用其服務的最後一個程序將其卸載。
 
 但是，要建立最終的可執行文件而必須執行地址修正時，鏈接器的工作更加困難。 由於它不能單純 “提取” 功能並簡單將它們插入到最終的可執行文件中，它必須以某種方式將關於DLL和函數的足夠信息存儲到最終的可執行文件中，以便它能夠在運行時找到並加載正確的DLL。這就需要 [導入庫] Import Library , 導入庫包含它所代表的DLL的信息。 鏈接器可以從導入庫中提取需要的信息並將其填充到可執行文件中。 當Windows加載程序將程序加載到內存中時，它會看到該程序鏈接到一個DLL，因此它會搜索該DLL並將其映射到該進程的地址空間中，並執行用於調用DLL中函數的地址修正。
 
-您可以選擇自己加載DLL而不依賴Windows加載器, 使用 WIN32 的 LoadLibrary()。 這種方法有其優點和缺點：
+您可以選擇自己加載DLL而不依賴Windows加載器, 使用 WIN32 的 LoadLibrary()。 這種方法有其優點和缺點：  
 
 * 它不需要導入庫，因此即使沒有導入庫，也可以加載和使用任何DLL。 但是，您仍然需要了解其中的功能，它們需要的參數以及類似參數。
 
@@ -32,7 +32,7 @@ copy [Iczelion's Win32 Assembly Homepage]
 * 如果使用 LoadLibrary，則必須為每個要調用的函數調用 GetProcAddress。 GetProcAddress 檢索特定DLL中函數的入口點地址。 所以你的代碼可能會稍微大一些，開始的執行速度稍慢一點點而已。
 
 看到 LoadLibrary 調用的優點/缺點，我們將詳細介紹如何創建一個DLL。
-以下代碼最基本的是DLL源碼的骨架。供兩個檔案,
+以下代碼最基本的是DLL源碼的骨架。供兩個檔案,  
 
 
 [code]
@@ -93,7 +93,7 @@ EXPORTS TestFunction
 [/code]
 
 
-以上兩個檔案就是一個最基本DLL骨架的源碼程序。 每個DLL必須有一個入口函數 (entrypoint function)。 Windows將每次調用入口函數：
+以上兩個檔案就是一個最基本DLL骨架的源碼程序。 每個DLL必須有一個入口函數 (entrypoint function)。 Windows將每次調用入口函數：  
 
 1) 該DLL首次被加載到RAM
 2) 該DLL被卸載
