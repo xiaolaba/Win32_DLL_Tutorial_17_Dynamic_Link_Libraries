@@ -150,7 +150,7 @@ assembler (ml.exe) 的選項則相同，即/ c / coff / Cp。 因此，在鏈接
 接下來，我將向您展示如何使用 LoadLibrary 加載 DLL。
 
 [code]
-
+```
 ; assembler : MASM32 SDK Version 11
 ; date : 2018-MAY-25
 ; download : http://www.masm32.com/download.htm
@@ -215,7 +215,7 @@ invoke FreeLibrary,hLib
 .endif
 invoke ExitProcess,NULL
 end start
-
+```
 [/code]
 
 
